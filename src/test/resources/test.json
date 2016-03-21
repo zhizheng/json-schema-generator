@@ -1,0 +1,13 @@
+{
+  "flag": "test",
+  "log": {
+    "logId": 1,
+    "logMsg": "hello world"
+  },
+  "tags": [
+    "java",
+    "json",
+    "schema",
+    "generator"
+  ]
+}
