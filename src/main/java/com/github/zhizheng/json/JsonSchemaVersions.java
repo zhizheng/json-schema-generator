@@ -39,4 +39,10 @@ public enum JsonSchemaVersions {
 	public String getVersion() {
 		return version;
 	}
+	
+	@Override
+	public String toString() {
+		return version;
+	}
+	
 }

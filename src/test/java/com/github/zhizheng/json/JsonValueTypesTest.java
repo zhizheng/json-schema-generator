@@ -29,12 +29,12 @@ public class JsonValueTypesTest {
 
 	@Test
 	public void test(){
-		Assert.assertEquals("object", JsonValueTypes.OBJECT.getType());
-		Assert.assertEquals("array", JsonValueTypes.ARRAY.getType());
-		Assert.assertEquals("string", JsonValueTypes.STRING.getType());
-		Assert.assertEquals("number", JsonValueTypes.NUMBER.getType());
-		Assert.assertEquals("integer", JsonValueTypes.INTEGER.getType());
-		Assert.assertEquals("boolean", JsonValueTypes.BOOLEAN.getType());
-		Assert.assertEquals("null", JsonValueTypes.NULL.getType());
+		Assert.assertEquals("object", JsonValueTypes.OBJECT.toString());
+		Assert.assertEquals("array", JsonValueTypes.ARRAY.toString());
+		Assert.assertEquals("string", JsonValueTypes.STRING.toString());
+		Assert.assertEquals("number", JsonValueTypes.NUMBER.toString());
+		Assert.assertEquals("integer", JsonValueTypes.INTEGER.toString());
+		Assert.assertEquals("boolean", JsonValueTypes.BOOLEAN.toString());
+		Assert.assertEquals("null", JsonValueTypes.NULL.toString());
 	}
 }

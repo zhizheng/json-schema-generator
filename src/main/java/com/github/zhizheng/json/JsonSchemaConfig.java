@@ -27,16 +27,16 @@ public class JsonSchemaConfig {
 	 * 是否优雅打印
 	 */
 	private boolean prettyPrint = false;
-	
+
 	/**
 	 * required 属性
 	 */
-	private boolean required = true;
+	private boolean required = false;
 	/**
 	 * 是否打印 required 属性
 	 */
-	private boolean printRequired = true;
-	
+	private boolean printRequired = false;
+
 	/**
 	 * id 属性
 	 */
@@ -45,7 +45,7 @@ public class JsonSchemaConfig {
 	 * 是否打印 id 属性
 	 */
 	private boolean printId = false;
-	
+
 	/**
 	 * title 属性
 	 */
@@ -54,7 +54,7 @@ public class JsonSchemaConfig {
 	 * 是否打印 title 属性
 	 */
 	private boolean printTitle = false;
-	
+
 	/**
 	 * description 属性
 	 */
@@ -63,44 +63,44 @@ public class JsonSchemaConfig {
 	 * 是否打印 description 属性
 	 */
 	private boolean printDescription = false;
-	
+
 	/**
 	 * number 字段相关属性默认值
 	 */
 	private int minimum = 0;
 	private int maximum = Integer.MAX_VALUE;
-    private boolean exclusiveMinimum = false;
-    private boolean exclusiveMaximum = false;
-    /**
+	private boolean exclusiveMinimum = false;
+	private boolean exclusiveMaximum = false;
+	/**
 	 * 是否打印 number 字段相关属性
 	 */
-    private boolean printMinimum = false;
+	private boolean printMinimum = false;
 	private boolean printMaximum = false;
-    private boolean printExclusiveMinimum = false;
-    private boolean printExclusiveMaximum = false;
-    
-    /**
-     * string 字段相关属性默认值
-     */
-    private int minLength = 0;
-    private int maxLength = 4000;
+	private boolean printExclusiveMinimum = false;
+	private boolean printExclusiveMaximum = false;
+
+	/**
+	 * string 字段相关属性默认值
+	 */
+	private int minLength = 0;
+	private int maxLength = 4000;
 	/**
 	 * 是否打印 string 字段相关属性
 	 */
-    private boolean printMinLength = false;
-    private boolean printMaxLength = false;
-    
-    /**
-     * array 字段相关属性默认值
-     */
-    private int minItems = 0;
-    private boolean uniqueItems = false;
+	private boolean printMinLength = false;
+	private boolean printMaxLength = false;
+
+	/**
+	 * array 字段相关属性默认值
+	 */
+	private int minItems = 0;
+	private boolean uniqueItems = false;
 	/**
 	 * 是否打印 array 字段相关属性
 	 */
-    private boolean printMinItems = false;
-    private boolean printUniqueItems = false;
-    
+	private boolean printMinItems = false;
+	private boolean printUniqueItems = false;
+
 	public boolean isPrettyPrint() {
 		return prettyPrint;
 	}
@@ -132,7 +132,7 @@ public class JsonSchemaConfig {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public boolean isPrintId() {
 		return printId;
 	}
@@ -276,7 +276,7 @@ public class JsonSchemaConfig {
 	public void setMinItems(int minItems) {
 		this.minItems = minItems;
 	}
-	
+
 	public boolean isUniqueItems() {
 		return uniqueItems;
 	}

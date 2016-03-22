@@ -28,6 +28,6 @@ public class JsonSchemaVersionsTest {
 
 	@Test
 	public void test(){
-		System.out.println(JsonSchemaVersions.VC.getVersion());
+		System.out.println(JsonSchemaVersions.VC.toString());
 	}
 }

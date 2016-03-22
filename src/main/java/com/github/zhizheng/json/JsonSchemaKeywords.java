@@ -53,4 +53,10 @@ public enum JsonSchemaKeywords {
 	public String getKeyword() {
 		return keyword;
 	}
+
+	@Override
+	public String toString() {
+		return keyword;
+	}
+	
 }

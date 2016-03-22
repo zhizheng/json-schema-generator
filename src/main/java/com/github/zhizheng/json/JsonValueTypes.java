@@ -47,6 +47,11 @@ public enum JsonValueTypes {
 		return type;
 	}
 	
+	@Override
+	public String toString() {
+		return type;
+	}
+	
 	/**
 	 * 判断 Json 元素的类型
 	 * 
@@ -55,21 +60,21 @@ public enum JsonValueTypes {
 	 */
 	public static String getJsonValueType(JsonElement jsonElement) {
 		if (jsonElement.isJsonObject()) {
-			return OBJECT.getType();
+			return OBJECT.toString();
 		}
 		if (jsonElement.isJsonArray()) {
-			return ARRAY.getType();
+			return ARRAY.toString();
 		}
 		if (jsonElement.isJsonPrimitive()) {
 			JsonPrimitive asJsonPrimitive = jsonElement.getAsJsonPrimitive();
 			if (asJsonPrimitive.isBoolean()) {
-				return BOOLEAN.getType();
+				return BOOLEAN.toString();
 			}
 			if (asJsonPrimitive.isNumber()) {
-				return NUMBER.getType();
+				return NUMBER.toString();
 			}
-			return STRING.getType();
+			return STRING.toString();
 		}
-		return NULL.getType();
+		return NULL.toString();
 	}
 }
