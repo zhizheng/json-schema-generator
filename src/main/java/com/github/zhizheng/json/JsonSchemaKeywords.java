@@ -38,6 +38,7 @@ public enum JsonSchemaKeywords {
 	EXCLUSIVEMAXIMUM("exclusiveMaximum"),
 	MINLENGTH("minLength"),
 	MAXLENGTH("maxLength"),
+	DEFAULT("default"),
 	MINITEMS("minItems"),
 	UNIQUEITEMS("uniqueItems");
 	

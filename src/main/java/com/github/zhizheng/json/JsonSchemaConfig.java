@@ -22,7 +22,12 @@ package com.github.zhizheng.json;
  * @since 0.0.1-SNAPSHOT
  */
 public class JsonSchemaConfig {
-
+	
+	/**
+	 * Json Schema 规范版本
+	 */
+	private String version = JsonSchemaVersions.V4.toString();
+	
 	/**
 	 * 是否优雅打印
 	 */
@@ -67,8 +72,8 @@ public class JsonSchemaConfig {
 	/**
 	 * number 字段相关属性默认值
 	 */
-	private int minimum = 0;
-	private int maximum = Integer.MAX_VALUE;
+	private Number minimum = 0;
+	private Number maximum = Long.MAX_VALUE;
 	private boolean exclusiveMinimum = false;
 	private boolean exclusiveMaximum = false;
 	/**
@@ -100,6 +105,28 @@ public class JsonSchemaConfig {
 	 */
 	private boolean printMinItems = false;
 	private boolean printUniqueItems = false;
+	
+	/**
+	 * 是否打印 default 属性
+	 */
+	private boolean printDefault = false;
+	/**
+	 * default 属性默认值是否来自 Json 字符串
+	 */
+	private boolean defaultFromJson = false;
+	/**
+	 * defaultFromJson = false 时，default 属性默认值
+	 */
+	private String defaultString = "";
+	private Number defaultNumber = 0;
+	
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
 
 	public boolean isPrettyPrint() {
 		return prettyPrint;
@@ -173,19 +200,19 @@ public class JsonSchemaConfig {
 		this.printDescription = printDescription;
 	}
 
-	public int getMinimum() {
+	public Number getMinimum() {
 		return minimum;
 	}
 
-	public void setMinimum(int minimum) {
+	public void setMinimum(Number minimum) {
 		this.minimum = minimum;
 	}
 
-	public int getMaximum() {
+	public Number getMaximum() {
 		return maximum;
 	}
 
-	public void setMaximum(int maximum) {
+	public void setMaximum(Number maximum) {
 		this.maximum = maximum;
 	}
 
@@ -299,6 +326,38 @@ public class JsonSchemaConfig {
 
 	public void setPrintUniqueItems(boolean printUniqueItems) {
 		this.printUniqueItems = printUniqueItems;
+	}
+
+	public boolean isPrintDefault() {
+		return printDefault;
+	}
+
+	public void setPrintDefault(boolean printDefault) {
+		this.printDefault = printDefault;
+	}
+
+	public boolean isDefaultFromJson() {
+		return defaultFromJson;
+	}
+
+	public void setDefaultFromJson(boolean defaultFromJson) {
+		this.defaultFromJson = defaultFromJson;
+	}
+
+	public String getDefaultString() {
+		return defaultString;
+	}
+
+	public void setDefaultString(String defaultString) {
+		this.defaultString = defaultString;
+	}
+
+	public Number getDefaultNumber() {
+		return defaultNumber;
+	}
+
+	public void setDefaultNumber(Number defaultNumber) {
+		this.defaultNumber = defaultNumber;
 	}
 
 }

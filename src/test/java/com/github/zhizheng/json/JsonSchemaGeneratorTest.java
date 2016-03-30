@@ -39,17 +39,19 @@ public class JsonSchemaGeneratorTest {
 		jsonSchemaConfig.setPrettyPrint(true);// 优雅打印格式
 		
 		//  最大化打印
-//		jsonSchemaConfig.setPrintRequired(true);
-//		jsonSchemaConfig.setRequired(true);
-//		jsonSchemaConfig.setPrintId(true);
-//		jsonSchemaConfig.setPrintMinimum(true);
-//		jsonSchemaConfig.setPrintMaximum(true);
-//		jsonSchemaConfig.setPrintExclusiveMinimum(true);
-//		jsonSchemaConfig.setPrintExclusiveMaximum(true);
-//		jsonSchemaConfig.setPrintMinLength(true);
-//		jsonSchemaConfig.setPrintMaxLength(true);
-//		jsonSchemaConfig.setPrintMinItems(true);
-//		jsonSchemaConfig.setPrintUniqueItems(true);
+//		jsonSchemaConfig.setPrintRequired(true); // 设置打印 required 属性
+//		jsonSchemaConfig.setRequired(true); // 将 required 属性的值设置 true
+//		jsonSchemaConfig.setPrintId(true); // 设置打印 id 属性
+//		jsonSchemaConfig.setPrintMinimum(true); // 设置打印 minimum 属性
+//		jsonSchemaConfig.setPrintMaximum(true); // 设置打印 maximum 属性
+//		jsonSchemaConfig.setPrintExclusiveMinimum(true); // 设置打印 exclusiveMinimum 属性
+//		jsonSchemaConfig.setPrintExclusiveMaximum(true); // 设置打印 exclusiveMaximum 属性
+//		jsonSchemaConfig.setPrintMinLength(true); // 设置打印 minLength 属性
+//		jsonSchemaConfig.setPrintMaxLength(true); // 设置打印 maxLength 属性
+//		jsonSchemaConfig.setPrintMinItems(true); // 设置打印 minItems 属性
+//		jsonSchemaConfig.setPrintUniqueItems(true); // 设置打印 uniqueItems 属性
+//		jsonSchemaConfig.setPrintDefault(true); // 设置打印 default 属性
+//		jsonSchemaConfig.setDefaultFromJson(true); // 设置 default 属性的值从 json 取
 	}
 	
 	@Test

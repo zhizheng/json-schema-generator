@@ -24,8 +24,7 @@ package com.github.zhizheng.json;
 public enum JsonSchemaVersions {
 
 	V3("http://json-schema.org/draft-03/schema#"),// 历史版本
-	V4("http://json-schema.org/draft-04/schema#"),// 历史版本
-	VC("http://json-schema.org/draft-04/schema#");// 当前版本
+	V4("http://json-schema.org/draft-04/schema#");// 历史版本
 	
 	private String version;
 

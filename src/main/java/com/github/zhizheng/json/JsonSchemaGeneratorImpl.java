@@ -205,7 +205,7 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 			if(jsonSchemaConfig.isPrintId()){
 				jsonSchemaObject.addProperty(JsonSchemaKeywords.ID.toString(), jsonSchemaConfig.getId());
 			}
-			jsonSchemaObject.addProperty(JsonSchemaKeywords.SCHEMA.toString(), JsonSchemaVersions.VC.toString());
+			jsonSchemaObject.addProperty(JsonSchemaKeywords.SCHEMA.toString(), jsonSchemaConfig.getVersion());
 		} else {
 			if(jsonSchemaConfig.isPrintId()){
 				jsonSchemaObject.addProperty(JsonSchemaKeywords.ID.toString(), "/" + elementName);
@@ -232,6 +232,9 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 			if(jsonSchemaConfig.isPrintMaxLength()){
 				jsonSchemaObject.addProperty(JsonSchemaKeywords.MAXLENGTH.toString(),  jsonSchemaConfig.getMaxLength());
 			}
+			if(jsonSchemaConfig.isPrintDefault()){
+				jsonSchemaObject.addProperty(JsonSchemaKeywords.DEFAULT.toString(), jsonSchemaConfig.isDefaultFromJson() ? jsonElement.getAsString() : jsonSchemaConfig.getDefaultString());
+			}
 		}
 		if(jsonElementType.equals(JsonValueTypes.NUMBER.toString())){// number
 			if(jsonSchemaConfig.isPrintMinimum()){
@@ -245,6 +248,9 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 			}
 			if(jsonSchemaConfig.isPrintExclusiveMaximum()){
 				jsonSchemaObject.addProperty(JsonSchemaKeywords.EXCLUSIVEMAXIMUM.toString(), jsonSchemaConfig.isExclusiveMaximum());
+			}
+			if(jsonSchemaConfig.isPrintDefault()){
+				jsonSchemaObject.addProperty(JsonSchemaKeywords.DEFAULT.toString(), jsonSchemaConfig.isDefaultFromJson() ? jsonElement.getAsNumber() : jsonSchemaConfig.getDefaultNumber());
 			}
 		}
 		
