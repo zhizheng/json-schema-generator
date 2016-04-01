@@ -184,7 +184,7 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 		}
 		gsonBuilder.disableHtmlEscaping();
 		Gson gson = gsonBuilder.create();
-		JsonObject jsonSchemaElement = makeSchemaElement(jsonElement, null, true);
+		JsonObject jsonSchemaElement = makeSchemaElement(jsonElement, null, true, null);
 		String jsonSchemaString = gson.toJson(jsonSchemaElement);
 		return jsonSchemaString;
 	}
@@ -195,9 +195,10 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 	 * @param jsonElement
 	 * @param elementName
 	 * @param isFirstLevel
+	 * @param required
 	 * @return
 	 */
-	private JsonObject makeSchemaElement(JsonElement jsonElement, String elementName, boolean isFirstLevel) {
+	private JsonObject makeSchemaElement(JsonElement jsonElement, String elementName, boolean isFirstLevel, JsonArray required) {
 		JsonObject jsonSchemaObject = new JsonObject();
 		
 		// id, $schema
@@ -244,9 +245,15 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 				jsonSchemaObject.addProperty(JsonSchemaKeywords.MAXIMUM.toString(),  jsonSchemaConfig.getMaximum());
 			}
 			if(jsonSchemaConfig.isPrintExclusiveMinimum()){
+				if(!jsonSchemaConfig.isPrintMinimum()){
+					jsonSchemaObject.addProperty(JsonSchemaKeywords.MINIMUM.toString(), jsonSchemaConfig.getMinimum());
+				}
 				jsonSchemaObject.addProperty(JsonSchemaKeywords.EXCLUSIVEMINIMUM.toString(), jsonSchemaConfig.isExclusiveMinimum());
 			}
 			if(jsonSchemaConfig.isPrintExclusiveMaximum()){
+				if(!jsonSchemaConfig.isPrintMaximum()){
+					jsonSchemaObject.addProperty(JsonSchemaKeywords.MAXIMUM.toString(),  jsonSchemaConfig.getMaximum());
+				}
 				jsonSchemaObject.addProperty(JsonSchemaKeywords.EXCLUSIVEMAXIMUM.toString(), jsonSchemaConfig.isExclusiveMaximum());
 			}
 			if(jsonSchemaConfig.isPrintDefault()){
@@ -254,30 +261,47 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 			}
 		}
 		
-		// required
-		if(jsonSchemaConfig.isPrintRequired()){
+		// required && V3
+		if(jsonSchemaConfig.isPrintRequired() 
+			&& JsonSchemaVersions.V3.toString().equals(jsonSchemaConfig.getVersion())){// V3 版本规范中，required 是 boolean 类型，并在每个叶子元素定义内
 			jsonSchemaObject.addProperty(JsonSchemaKeywords.REQUIRED.toString(), jsonSchemaConfig.isRequired());
+		}
+		// required && V4
+		if(jsonSchemaConfig.isPrintRequired() 
+			&& JsonSchemaVersions.V4.toString().equals(jsonSchemaConfig.getVersion()) 
+			&& (jsonElementType.equals(JsonValueTypes.STRING.toString()) 
+				|| jsonElementType.equals(JsonValueTypes.NUMBER.toString())
+				|| jsonElementType.equals(JsonValueTypes.INTEGER.toString())
+				|| jsonElementType.equals(JsonValueTypes.BOOLEAN.toString()))){// V4 版本规范中，required 是 array 类型，并在每个 object 元素定义内
+			required.add(elementName);
 		}
 		
 		// properties, items
-		if (jsonElement.isJsonObject() && !jsonElement.getAsJsonObject().entrySet().isEmpty()) {
+		JsonArray newRequired = new JsonArray();
+		if (jsonElementType.equals(JsonValueTypes.OBJECT.toString()) && !jsonElement.getAsJsonObject().entrySet().isEmpty()) {// object.properties
 			JsonObject propertiesObject = new JsonObject();
 			for (Map.Entry<String, JsonElement> propertyElemement : jsonElement.getAsJsonObject().entrySet()) {
-				propertiesObject.add(propertyElemement.getKey(), makeSchemaElement(propertyElemement.getValue(), propertyElemement.getKey(), false));
+				propertiesObject.add(propertyElemement.getKey(), makeSchemaElement(propertyElemement.getValue(), propertyElemement.getKey(), false, newRequired));
 			}
 			jsonSchemaObject.add(JsonSchemaKeywords.PROPERTIES.toString(), propertiesObject);
-		} else if (jsonElement.isJsonArray() && jsonElement.getAsJsonArray().size() > 0) {
+		} else if (jsonElementType.equals(JsonValueTypes.ARRAY.toString()) && jsonElement.getAsJsonArray().size() > 0) {// array.items
 			JsonArray jsonArray = jsonElement.getAsJsonArray();
-			jsonSchemaObject.add(JsonSchemaKeywords.ITEMS.toString(), makeSchemaElement(jsonArray.get(0), "0", false));
+			jsonSchemaObject.add(JsonSchemaKeywords.ITEMS.toString(), makeSchemaElement(jsonArray.get(0), "0", false,  new JsonArray()));
 			
 		}
 		
-		// type
+		// required && V4
+		if (jsonElementType.equals(JsonValueTypes.OBJECT.toString())
+				&& JsonSchemaVersions.V4.toString().equals(jsonSchemaConfig.getVersion())) {// object.required
+			jsonSchemaObject.add(JsonSchemaKeywords.REQUIRED.toString(), newRequired);
+		}
+		
+		// minitems , uniqueitems
 		if(jsonElementType.equals(JsonValueTypes.ARRAY.toString())){// array
-			if(jsonSchemaConfig.isPrintMinItems()){
+			if(jsonSchemaConfig.isPrintMinItems()){// array.minitems
 				jsonSchemaObject.addProperty(JsonSchemaKeywords.MINITEMS.toString(), jsonSchemaConfig.getMinItems());
 			}
-			if(jsonSchemaConfig.isPrintUniqueItems()){
+			if(jsonSchemaConfig.isPrintUniqueItems()){// array.uniqueitems
 				jsonSchemaObject.addProperty(JsonSchemaKeywords.UNIQUEITEMS.toString(),  jsonSchemaConfig.isUniqueItems());
 			}
 		}

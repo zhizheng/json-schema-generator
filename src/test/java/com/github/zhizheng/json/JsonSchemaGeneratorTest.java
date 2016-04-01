@@ -39,8 +39,9 @@ public class JsonSchemaGeneratorTest {
 		jsonSchemaConfig.setPrettyPrint(true);// 优雅打印格式
 		
 		//  最大化打印
+//		jsonSchemaConfig.setVersion(JsonSchemaVersions.V4.toString());// 默认是 V3
 //		jsonSchemaConfig.setPrintRequired(true); // 设置打印 required 属性（开关）
-//		jsonSchemaConfig.setRequired(true); // 将 required 属性的值设置 true
+//		jsonSchemaConfig.setRequired(true); // 将 required 属性的值设置 true (support V3 only)
 //		jsonSchemaConfig.setPrintId(true); // 设置打印 id 属性（开关）
 //		jsonSchemaConfig.setPrintMinimum(true); // 设置打印 minimum 属性（开关）
 //		jsonSchemaConfig.setPrintMaximum(true); // 设置打印 maximum 属性（开关）

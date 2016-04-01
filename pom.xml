@@ -4,7 +4,7 @@
 	<groupId>com.github.zhizheng</groupId>
 	<artifactId>json-schema-generator</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<name>json schema generator</name>
 	<description>Generates json schema from json string</description>
 	<url>https://github.com/zhizheng/json-schema-generator</url>

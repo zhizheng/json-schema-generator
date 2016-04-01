@@ -140,6 +140,11 @@ public class JsonSchemaConfig {
 		return required;
 	}
 
+	/**
+	 * 支持规范 http://json-schema.org/draft-03/schema#，不支持规范 http://json-schema.org/draft-04/schema#
+	 * 
+	 * @param required
+	 */
 	public void setRequired(boolean required) {
 		this.required = required;
 	}
@@ -252,6 +257,11 @@ public class JsonSchemaConfig {
 		return printExclusiveMinimum;
 	}
 
+	/**
+	 * 打印本属性后，强制打印 minimum 属性
+	 * 
+	 * @param printExclusiveMinimum
+	 */
 	public void setPrintExclusiveMinimum(boolean printExclusiveMinimum) {
 		this.printExclusiveMinimum = printExclusiveMinimum;
 	}
@@ -260,6 +270,11 @@ public class JsonSchemaConfig {
 		return printExclusiveMaximum;
 	}
 
+	/**
+	 * 打印本属性后，强制打印 maximum 属性
+	 * 
+	 * @param printExclusiveMaximum
+	 */
 	public void setPrintExclusiveMaximum(boolean printExclusiveMaximum) {
 		this.printExclusiveMaximum = printExclusiveMaximum;
 	}
