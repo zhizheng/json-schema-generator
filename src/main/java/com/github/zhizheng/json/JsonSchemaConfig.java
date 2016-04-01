@@ -26,7 +26,7 @@ public class JsonSchemaConfig {
 	/**
 	 * Json Schema 规范版本
 	 */
-	private String version = JsonSchemaVersions.V4.toString();
+	private String version = JsonSchemaVersions.V3.toString();
 	
 	/**
 	 * 是否优雅打印
