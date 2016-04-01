@@ -75,15 +75,15 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 	 * 
 	 * @param string
 	 * @return 
-	 * @throws ParseJsonException 
+	 * @throws JsonParseException 
 	 */
-	private JsonElement validateInput(String string) throws ParseJsonException{
+	private JsonElement validateInput(String string) throws JsonParseException{
 		JsonElement jsonElement = null;
 		try{
 			JsonParser jsonParser = new JsonParser();
 	        jsonElement = jsonParser.parse(string);
 		}catch(Exception e){
-			throw new ParseJsonException(e);
+			throw new JsonParseException(e);
 		}
 		return jsonElement;
 	}
@@ -93,9 +93,9 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 	 * 
 	 * @param file
 	 * @return
-	 * @throws ParseJsonException
+	 * @throws JsonParseException
 	 */
-	private JsonElement validateInput(File file) throws ParseJsonException{
+	private JsonElement validateInput(File file) throws JsonParseException{
 		JsonElement jsonElement = null;
 		FileReader fileReader = null;
 		try{
@@ -103,7 +103,7 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 			JsonParser jsonParser = new JsonParser();
 	        jsonElement = jsonParser.parse(fileReader);
 		}catch(Exception e){
-			throw new ParseJsonException(e);
+			throw new JsonParseException(e);
 		} finally {
 			if(fileReader != null){
 				try {
@@ -121,15 +121,15 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 	 * 
 	 * @param reader
 	 * @return
-	 * @throws ParseJsonException
+	 * @throws JsonParseException
 	 */
-	private JsonElement validateInput(Reader reader) throws ParseJsonException{
+	private JsonElement validateInput(Reader reader) throws JsonParseException{
 		JsonElement jsonElement = null;
 		try{
 			JsonParser jsonParser = new JsonParser();
 	        jsonElement = jsonParser.parse(reader);
 		}catch(Exception e){
-			throw new ParseJsonException(e);
+			throw new JsonParseException(e);
 		}
 		return jsonElement;
 	}
@@ -139,9 +139,9 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 	 * 
 	 * @param url
 	 * @return
-	 * @throws ParseJsonException
+	 * @throws JsonParseException
 	 */
-	private JsonElement validateInput(URL url) throws ParseJsonException{
+	private JsonElement validateInput(URL url) throws JsonParseException{
 		JsonElement jsonElement = null;
 		InputStream inputStream = null;
 		InputStreamReader inputStreamReader = null;
@@ -151,7 +151,7 @@ public class JsonSchemaGeneratorImpl implements JsonSchemaGenerator {
 			JsonParser jsonParser = new JsonParser();
 			jsonElement = jsonParser.parse(inputStreamReader);
 		}catch(Exception e){
-			throw new ParseJsonException(e);
+			throw new JsonParseException(e);
 		} finally {
 			if(inputStreamReader != null){
 				try {
