@@ -71,6 +71,14 @@ public enum JsonValueTypes {
 				return BOOLEAN.toString();
 			}
 			if (asJsonPrimitive.isNumber()) {
+				// integer 类型判断 begin
+				try{
+					if(String.valueOf( asJsonPrimitive.getAsBigInteger()).equals(asJsonPrimitive.getAsString())){
+						return INTEGER.toString();
+					}
+				}catch(Exception e){
+				}
+				// integer 类型判断 end
 				return NUMBER.toString();
 			}
 			return STRING.toString();
