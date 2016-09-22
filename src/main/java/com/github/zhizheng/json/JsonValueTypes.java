@@ -73,7 +73,7 @@ public enum JsonValueTypes {
 			if (asJsonPrimitive.isNumber()) {
 				// integer 类型判断 begin
 				try{
-					if(String.valueOf( asJsonPrimitive.getAsBigInteger()).equals(asJsonPrimitive.getAsString())){
+					if(String.valueOf(asJsonPrimitive.getAsBigInteger()).equals(asJsonPrimitive.getAsString())){
 						return INTEGER.toString();
 					}
 				}catch(Exception e){
